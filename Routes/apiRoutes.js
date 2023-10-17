@@ -3,7 +3,7 @@ const router = express.Router();
 const fs = require("fs");
 //const path = require("path");
 // require in your db.json file (/db/db.json)
-const noteEntries = "/db/db.json";
+const noteEntries = "db/db.json";
 
 function newId() {
   return Math.random();
