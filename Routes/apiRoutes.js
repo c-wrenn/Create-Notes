@@ -39,16 +39,15 @@ console.log( "random id assigned")
 router.delete("/notes/:id", (req, res) => {
   // Will read id
   const id = req.params.id; 
-
   const dirPath = "/Users/crislyn/bootcamp/Create-Notes/db/db.json";
 
   //Will parse through the json data
   const myNotes = JSON.parse(fs.readFileSync(dirPath, "utf8")); 
-  console.log("Delete a note route works!");
+ 
 
-  updateNotes = myNotes.filter(myNotes => myNotes.id !== id);
+  updateNotes = myNotes.filter(note => note.id !== id);
   fs.writeFileSync(dirPath, JSON.stringify(updateNotes));
-  res.json(myNotes);
+  res.json(updateNotes);
   console.log("note deleted");
 });
 
