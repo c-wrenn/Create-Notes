@@ -1,6 +1,6 @@
 const express = require('express');
-const PORT = 3306;
-//const PORT = process.env.PORT
+//const PORT = 3306;
+const PORT = process.env.PORT || 3306
 
 //require in json file in db folder
 // const notetaker = require('./db/db.json')

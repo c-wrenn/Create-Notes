@@ -6,8 +6,8 @@ const fs = require("fs");
 const noteEntries = require("../db/db.json");
 
 function newId() {
-  return Math.random()
-};
+  return Math.random();
+}
 
 router.get("/notes", (req, res) => {
   //provides path
@@ -26,27 +26,29 @@ router.post("/notes", (req, res) => {
   console.log(allNotes);
 
   //Assigns each note an Id
-allNotes.id = myNotes.length.toString();
-console.log( "random id assigned")
+  allNotes.id = myNotes.length.toString();
+  console.log("random id assigned");
 
-//adds to json data
+  //adds to json data
   myNotes.push(allNotes);
-
+  //writes to file
   fs.writeFileSync(dirPath, JSON.stringify(myNotes));
   res.json(myNotes);
 });
 
 router.delete("/notes/:id", (req, res) => {
-  // Will read id
-  const id = req.params.id; 
+  // Will target id
+  const id = req.params.id;
   const dirPath = "/Users/crislyn/bootcamp/Create-Notes/db/db.json";
 
   //Will parse through the json data
-  const myNotes = JSON.parse(fs.readFileSync(dirPath, "utf8")); 
- 
+  const myNotes = JSON.parse(fs.readFileSync(dirPath, "utf8"));
 
-  updateNotes = myNotes.filter(note => note.id !== id);
+  //filters notes by their id
+  updateNotes = myNotes.filter((note) => note.id !== id);
+  //writes to file
   fs.writeFileSync(dirPath, JSON.stringify(updateNotes));
+  //shows new array
   res.json(updateNotes);
   console.log("note deleted");
 });
